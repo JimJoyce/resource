@@ -1,15 +1,20 @@
 chrome.tabs.executeScript( {
   code: "document.getSelection().toString();"
 }, function(selection) {
-  console.log(selection[0]);
-  var params = "thought=" + selection[0];
+  console.log(selection);
+  var params = "thought="
+
+  if (selection !== undefined) {
+    params += selection[0];
+  } else {
+    console.log("Nothing found");
+  }
 
 var xhr = new XMLHttpRequest();
   xhr.open("POST", "http://localhost:3000/thoughts?" + params, true);
     xhr.onreadystatechange = function(response) {
 
     if (xhr.readyState == 4) {
-      var test = JSON.parse(xhr.response);
       console.log(xhr.responseText);
       console.log("response complete");
       if (xhr.status == 200) {

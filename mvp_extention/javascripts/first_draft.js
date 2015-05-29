@@ -11,6 +11,7 @@ chrome.tabs.executeScript( {
   }
 
 var xhr = new XMLHttpRequest();
+// MAKE SURE TO CHANGE URL AND VARIABLE NAMES
   xhr.open("POST", "http://localhost:3000/thoughts?" + params, true);
     xhr.onreadystatechange = function(response) {
 

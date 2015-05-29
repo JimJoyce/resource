@@ -10,6 +10,12 @@ chrome.tabs.executeScript( {
     console.log("Nothing found");
   }
 
+// get the url of the page
+chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
+  params += ( '&snippet_url=' + tabs[0].url);
+});
+
+
 var xhr = new XMLHttpRequest();
 // MAKE SURE TO CHANGE URL AND VARIABLE NAMES
   xhr.open("POST", "http://localhost:3000/thoughts?" + params, true);

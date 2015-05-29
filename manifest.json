@@ -9,7 +9,7 @@
 	},
 	"browser_action": {
     "default_icon": "re_icon.png",
-    "default_title": "Re:source"
+    "default_title": "resource"
   },
 	"content_scripts": [
 		{

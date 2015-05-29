@@ -1,8 +1,8 @@
 /*Handle requests from background.html*/
 function handleRequest(
 	//The object data with the request params
-	request, 
-	//These last two ones isn't important for this example, if you want know more about it visit: http://code.google.com/chrome/extensions/messaging.html
+	request,
+	//These last two aren't important for this example, if you want know more about it visit: http://code.google.com/chrome/extensions/messaging.html
 	sender, sendResponse
 	) {
 	if (request.callFunction == "toggleSidebar")
@@ -35,7 +35,7 @@ function toggleSidebar() {
 			box-shadow:inset 0 0 1em black;\
 			z-index:999999;\
 		";
-		document.body.appendChild(sidebar);
+		$("body").appendChild(sidebar);
 		sidebarOpen = true;
 	}
 }

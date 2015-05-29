@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+  "name": "sandbox extension",
+  "description": "Helps christian learn how to build extensions.",
+  "version": "1.0",
+
+  "browser_action": {
+    "icons": {"128": "images/re_icon.png"},
+    "default_popup": "html/popup.html",
+    "default_title": "Open Sandbox"
+    },
+
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "http://localhost:3000/"
+    ]
+}

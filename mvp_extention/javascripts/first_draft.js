@@ -32,6 +32,7 @@ chrome.tabs.query({'active': true, 'currentWindow': true}, function (tabs) {
     $("#saveMessage").text("Saved!");
     console.log("Saved!");
     console.log(response);
+    window.setTimeout(window.close, 1000);
   });
 
 });

@@ -13,11 +13,12 @@ var xhr = new XMLHttpRequest();
       console.log(xhr.responseText);
       console.log("response complete");
       if (xhr.status == 200) {
-
+          $("#saveMessage").text("Saved!");
           console.log('Saved!');
-          // window.setTimeout(window.close, 1000);
+          window.setTimeout(window.close, 1000);
       } else {
           // Show what went wrong
+          $("#saveMessage").text('Error saving: ' + xhr.statusText);
           console.log( 'Error saving: ' + xhr.statusText);
       }
     }

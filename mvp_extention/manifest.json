@@ -1,13 +1,14 @@
 {
   "manifest_version": 2,
-  "name": "sandbox extension",
-  "description": "Helps christian learn how to build extensions.",
-  "version": "1.0",
+  "name": "MVP_Re_source saver",
+  "description": "Highlight a valuable snippet, then click to save to Re:Source!",
+  "version": "1.1",
+  "icons": {"128": "images/re_icon.png"},
 
   "browser_action": {
-    "icons": {"128": "images/re_icon.png"},
+    "default_icons": "images/re_icon.png",
     "default_popup": "html/popup.html",
-    "default_title": "Open Sandbox"
+    "default_title": "Highlight what you want to save, then click me!"
     },
 
   "permissions": [

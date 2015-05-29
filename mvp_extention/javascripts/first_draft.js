@@ -22,6 +22,18 @@ chrome.tabs.query({'active': true, 'currentWindow': true}, function (tabs) {
                   data: params
                 });
 
+  request.fail(function(response) {
+    $("#saveMessage").text('Error saving: ');
+    console.log("Something went wrong.");
+    console.log(response);
+  });
+
+  request.done(function (response) {
+    $("#saveMessage").text("Saved!");
+    console.log("Saved!");
+    console.log(response);
+  });
+
 });
 
 

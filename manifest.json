@@ -1,20 +1,19 @@
 {
-	"name": "resourcer",
+	"name": "Inject sidebar",
 	"manifest_version": 2,
-	"description": "Find something interesting? Send it to your notes.",
+	"description": "Inject a sidebar on the current tab when the page action is clicked",
 	"version": "0.2",
-	"icons": {"128": "re_icon.png"},
 	"background": {
 		"page": "background.html"
 	},
 	"browser_action": {
     "default_icon": "re_icon.png",
-    "default_title": "Re:source"
+    "default_title": "Inject Sidebar"
   },
 	"content_scripts": [
 		{
 			"matches": ["<all_urls>"],
-			"js": ["scripts/jquery-2.1.4.min.js" ,"script.js"]
+			"js": ["responderScript.js"]
 		}
 	],
 	"permissions": [

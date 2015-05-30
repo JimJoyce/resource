@@ -15,48 +15,49 @@ var sidebarOpen = false;
 function toggleSidebar() {
 	if(sidebarOpen) {
 		var el = document.getElementById('resource-sidebar');
+		$('#resource-sidebar').slideToggle("slow");
 		el.parentNode.removeChild(el);
 		sidebarOpen = false;
 	}
 	else {
+		css = "<link rel='stylesheet' type='text/css' href=" + chrome.extension.getURL('base_dom/sidebar-style.css') + ">"
+		$("head").prepend(css);
+		image = chrome.extension.getURL('images/re_icon.png');
+		// $("head").prepend(chrome.extension.getURL('custom_scripts/dragger.js'));
 		var sidebar = document.createElement('div');
 		sidebar.id = "resource-sidebar";
-		sidebar.innerHTML = "<h1>Drop what you found here</h1>";
-		$("div").draggable();
+		sidebar.class="drag-hover"
+		sidebar.innerHTML = "<img id='re-logo' src='" + image + "' />\
+		<h1>Drop what you found here</h1>";
+
+
+		//.ui-draggable-dragging
+
 		$("head").after(sidebar);
 		styleBar("#" + sidebar.id);
 		sidebarOpen = true;
+
+		var dragger = $("div").draggable({
+			helper: "clone",
+			appendTo: "#resource-sidebar",
+			zIndex: 100
+		});
+
+
+
 	}
 };
 
 function styleBar (id) {
 	$(id).droppable({
-		drop: function (event, ui) {
-			// event.preventDefault();
-			alert("dropped");
-		}
+		activeClass: "drag-highlight",
+		hoverClass: "drag-hover",
+		drop: function (event, ui) {alert("dropped")}
 	})
 	var bodyText = $(id).children();
 	$(id).toggle();
-	$(id).css({
-		"position": "fixed",
-		"top": "0",
-		"width": "100%",
-		"height": "5em",
-		"z-index": "45",
-		"background-color": "gray",
-		"box-shadow": "0px 6px 10px 2px rgba(0, 0, 0, .3)"
-	});
-
-	$(bodyText).css({
-		"font-family":"Open-Sans",
-		"text-align": "center",
-		"color": "#EAEAEA",
-		"margin-top": "75%",
-		"font-weight": "100"
-	});
-    // var options = { direction: 'left'};
-    $(id).slideToggle("fast");
+	$(id).css({"height": "5em"});
+  $(id).slideToggle("slow");
 };
 
 

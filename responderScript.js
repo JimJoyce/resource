@@ -9,7 +9,7 @@ function handleRequest(
 		toggleSidebar();
 }
 chrome.extension.onRequest.addListener(handleRequest);
-
+var selection;
 /*Small function wich create a sidebar(just to illustrate my point)*/
 var sidebarOpen = false;
 function toggleSidebar() {
@@ -23,26 +23,30 @@ function toggleSidebar() {
 		css = "<link rel='stylesheet' type='text/css' href=" + chrome.extension.getURL('base_dom/sidebar-style.css') + ">"
 		$("head").prepend(css);
 		image = chrome.extension.getURL('images/re_icon.png');
-		// $("head").prepend(chrome.extension.getURL('custom_scripts/dragger.js'));
+		api = "<script type='text/javascript' src=" + chrome.extension.getURL('custom_scripts/first_draft.js') + "></script>"
+		$("head").prepend(api);
 		var sidebar = document.createElement('div');
 		sidebar.id = "resource-sidebar";
 		sidebar.class="drag-hover"
 		sidebar.innerHTML = "<img id='re-logo' src='" + image + "' />\
 		<h1>Drop what you found here</h1>";
-
-
 		//.ui-draggable-dragging
-
 		$("head").after(sidebar);
 		styleBar("#" + sidebar.id);
 		sidebarOpen = true;
+//Clean all me up later
 
-		var dragger = $("div").draggable({
-			helper: "clone",
-			appendTo: "#resource-sidebar",
-			zIndex: 100
+		$(document).mouseup(function (event) {
+// getSelection.toString
+			//make it so the target from user selection is the only thing that becomes draggable
+			$(event.target).attr("id", "selected-resource");
+			selection = document.getSelection().toString()
+			var dragger = $("#selected-resource").draggable({
+				helper: "clone",
+				appendTo: "#resource-sidebar",
+				zIndex: 100
+			});
 		});
-
 
 
 	}
@@ -52,7 +56,10 @@ function styleBar (id) {
 	$(id).droppable({
 		activeClass: "drag-highlight",
 		hoverClass: "drag-hover",
-		drop: function (event, ui) {alert("dropped")}
+		drop: function (event, ui) {
+			api(selection);
+			// alert("dropped")
+		}
 	})
 	var bodyText = $(id).children();
 	$(id).toggle();

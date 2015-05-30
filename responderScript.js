@@ -14,32 +14,37 @@ chrome.extension.onRequest.addListener(handleRequest);
 var sidebarOpen = false;
 function toggleSidebar() {
 	if(sidebarOpen) {
-		var el = document.getElementById('mySidebar');
+		var el = document.getElementById('resource-sidebar');
 		el.parentNode.removeChild(el);
 		sidebarOpen = false;
 	}
 	else {
 		var sidebar = document.createElement('div');
-		sidebar.id = "mySidebar";
+		sidebar.id = "resource-sidebar";
 		sidebar.innerHTML = "<h1>Drop what you found here</h1>";
-		document.firstElementChild.appendChild(sidebar);
+		$("div").draggable();
+		$("head").after(sidebar);
 		styleBar("#" + sidebar.id);
 		sidebarOpen = true;
 	}
 };
 
 function styleBar (id) {
+	$(id).droppable({
+		drop: function (event, ui) {
+			// event.preventDefault();
+			alert("dropped");
+		}
+	})
 	var bodyText = $(id).children();
 	$(id).toggle();
 	$(id).css({
-		"position": "absolute",
-		"right": "0",
-		"top": "5%",
-		"width": "15%",
-		"height": "90%",
+		"position": "fixed",
+		"top": "0",
+		"width": "100%",
+		"height": "5em",
+		"z-index": "45",
 		"background-color": "gray",
-		"border-bottom-left-radius": "2em",
-		"border-top-left-radius": "2em",
 		"box-shadow": "0px 6px 10px 2px rgba(0, 0, 0, .3)"
 	});
 
@@ -50,9 +55,20 @@ function styleBar (id) {
 		"margin-top": "75%",
 		"font-weight": "100"
 	});
-    var options = { direction: 'left'};
+    // var options = { direction: 'left'};
     $(id).slideToggle("fast");
 };
+
+
+
+
+
+
+
+
+
+
+
 
 // .id{
 //   animation: slideIn ease-in-out 1s;

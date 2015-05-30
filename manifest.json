@@ -7,7 +7,7 @@
 		"page": "background.html"
 	},
 	"browser_action": {
-    "default_icon": "re_icon.png",
+    "default_icon": "images/re_icon.png",
     "default_title": "Inject Sidebar"
   },
 	"content_scripts": [
@@ -16,7 +16,14 @@
 			"js": ["scripts/jquery-2.1.4.min.js", "scripts/jquery-ui.js", "responderScript.js"]
 		}
 	],
+	"web_accessible_resources": [
+    "images/*.png",
+    "base_dom/*.css",
+    "base_dom/*.html"
+  ],
 	"permissions": [
+		"http://*/",
+		"https://*/",
 		"tabs"
 	]
 }

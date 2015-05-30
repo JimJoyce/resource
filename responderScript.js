@@ -23,11 +23,11 @@ function toggleSidebar() {
 		css = "<link rel='stylesheet' type='text/css' href=" + chrome.extension.getURL('base_dom/sidebar-style.css') + ">"
 		$("head").prepend(css);
 		image = chrome.extension.getURL('images/re_icon.png');
-		api = "<script type='text/javascript' src=" + chrome.extension.getURL('custom_scripts/first_draft.js') + "></script>"
-		$("head").prepend(api);
+		api_html = "<script type='text/javascript' src=" + chrome.extension.getURL('custom_scripts/first_draft.js') + "></script>"
+		$("head").prepend(api_html);
 		var sidebar = document.createElement('div');
 		sidebar.id = "resource-sidebar";
-		sidebar.class="drag-hover"
+		sidebar.class="drag-hover";
 		sidebar.innerHTML = "<img id='re-logo' src='" + image + "' />\
 		<h1>Drop what you found here</h1>";
 		//.ui-draggable-dragging
@@ -40,11 +40,11 @@ function toggleSidebar() {
 // getSelection.toString
 			//make it so the target from user selection is the only thing that becomes draggable
 			$(event.target).attr("id", "selected-resource");
-			selection = document.getSelection().toString()
+			selection = document.getSelection().toString();
 			var dragger = $("#selected-resource").draggable({
 				helper: "clone",
 				appendTo: "#resource-sidebar",
-				zIndex: 100
+				zIndex: 100000
 			});
 		});
 
